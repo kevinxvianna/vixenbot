@@ -7,10 +7,12 @@ client.on('ready', () => {
 });
 
 client.on('message', async (msg) => {
-  const musicChannel = '713930193823334420';
-  const staffMusicChannel = '863666437910298624';
+  const musicChannel = process.env.musicChannel;
+  const staffMusicChannel = process.env.staffMusicChannel;
 
   const isMusicChannel = msg.channel.id === musicChannel || msg.channel.id === staffMusicChannel;
+
+  console.log(isMusicChannel)
 
   const shouldReply = ((msg.content.includes("!p") || 
   msg.content.includes("-p") || msg.content.includes("=p") || 
