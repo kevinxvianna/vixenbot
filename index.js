@@ -12,13 +12,15 @@ client.on('message', async (msg) => {
 
   const isMusicChannel = msg.channel.id === musicChannel || msg.channel.id === staffMusicChannel;
 
-  console.log(isMusicChannel)
+  const isMe = msg.author.id === '868924509271523348'
 
   const shouldReply = ((msg.content.includes("!p") || 
   msg.content.includes("-p") || msg.content.includes("=p") || 
   msg.content.includes("!P") || msg.content.includes("-P")) ||
   msg.content.includes("=P") || msg.content.includes("-P")) &&
-  !isMusicChannel;
+  !isMusicChannel && !isMe;
+
+  console.log(msg);
 
   if(shouldReply){
     msg.delete({timeout: 3000});
