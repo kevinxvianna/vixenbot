@@ -12,15 +12,15 @@ client.on('message', async (msg) => {
 
   const isMusicChannel = msg.channel.id === musicChannel || msg.channel.id === staffMusicChannel;
 
-  const isMe = msg.author.id === '868924509271523348'
+  const isMe = msg.author.bot;
+
+  console.log(`isMe: ${isMe}`)
 
   const shouldReply = ((msg.content.includes("!p") || 
   msg.content.includes("-p") || msg.content.includes("=p") || 
   msg.content.includes("!P") || msg.content.includes("-P")) ||
   msg.content.includes("=P") || msg.content.includes("-P")) &&
   !isMusicChannel && !isMe;
-
-  console.log(msg);
 
   if(shouldReply){
     msg.delete({timeout: 3000});
@@ -30,7 +30,7 @@ client.on('message', async (msg) => {
 
   const isSubmittingCommands = (msg.content.includes("-sk") || msg.content.includes("!fs") ||
    msg.content.includes("-st") || msg.content.includes("-ST") || msg.content.includes('!FS') ||
-   msg.content.includes("-SK") && !isMusicChannel);
+   msg.content.includes("-SK") && !isMusicChannel && !isMe);
 
    if(isSubmittingCommands){
     msg.delete({timeout: 3000});
