@@ -13,6 +13,7 @@ client.on('message', async (msg) => {
   const isMusicChannel = msg.channel.id === musicChannel || msg.channel.id === staffMusicChannel;
 
   const isMe = msg.author.bot;
+  const isURL = msg.content.includes('http://') || msg.content.includes('https://') || msg.content.includes('www.');
 
   console.log(`isMe: ${isMe}`)
 
@@ -20,7 +21,7 @@ client.on('message', async (msg) => {
   msg.content.includes("-p") || msg.content.includes("=p") || 
   msg.content.includes("!P") || msg.content.includes("-P")) ||
   msg.content.includes("=P") || msg.content.includes("-P")) &&
-  !isMusicChannel && !isMe;
+  !isMusicChannel && !isMe && !isURL;
 
   if(shouldReply){
     msg.delete({timeout: 3000});
