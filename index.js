@@ -15,8 +15,6 @@ client.on('message', async (msg) => {
   const isMe = msg.author.bot;
   const isURL = msg.content.includes('http://') || msg.content.includes('https://') || msg.content.includes('www.');
 
-  console.log(`isMe: ${isMe}`)
-
   const shouldReply = ((msg.content.includes("!p") || 
   msg.content.includes("-p") || msg.content.includes("=p") || 
   msg.content.includes("!P") || msg.content.includes("-P")) ||
@@ -31,7 +29,11 @@ client.on('message', async (msg) => {
 
   const isSubmittingCommands = (msg.content.includes("-sk") || msg.content.includes("!fs") ||
    msg.content.includes("-st") || msg.content.includes("-ST") || msg.content.includes('!FS') ||
-   msg.content.includes("-SK") && !isMusicChannel && !isMe);
+   msg.content.includes("-SK")) && !isMusicChannel && !isMe && !isURL;
+
+   console.log(`isSubmittingCommands: ${isSubmittingCommands}`)
+   console.log(`isMusicChannel: ${isMusicChannel}`)
+   console.log(`isMe: ${isMe}`)
 
    if(isSubmittingCommands){
     msg.delete({timeout: 3000});
